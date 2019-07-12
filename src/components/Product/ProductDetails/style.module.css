@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+.wrapper {
+  display: flex;
+}
+
+.image {
+  width: 200px;
+  height: 200px;
+}
+
+.container {
+  padding: 24;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 18px;
+  font-family: Roboto;
+}
+
+.name {
+  font-size: 24px;
+  font-family: Roboto;
+  color: black;
+}
+
+.description {
+  margin-top: 10px;
+}
