@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  min-height: 100px;
+  background-color: #eee;
+}
+
+.containerBg {
+  width: 100%;
+  padding: 24;
+  justify-content: center;
+  display: flex;
+}
+
+.containerProducts {
+  max-width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 24;
+}
