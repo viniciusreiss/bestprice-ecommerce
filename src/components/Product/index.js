@@ -6,11 +6,13 @@ import style from './style.module.css'
 
 import ProductDetails from './ProductDetails'
 class Product extends Component {
-  state = {
-    visible: false
+
+    state = {
+    visible: false,
   }
 
   showModal = () => this.setState({ visible: true })
+  closeModal = () => this.setState({ visible: false })
 
   render () {
     return (
@@ -27,8 +29,10 @@ class Product extends Component {
         </div>
       </div>
       <ProductDetails
+        onCloseModal={this.closeModal}
         visible={this.state.visible}
         product={this.props.data}
+        onAddToCart={this.props.onAddToCart}
       />
     </div>
     )
