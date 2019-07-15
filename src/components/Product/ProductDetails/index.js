@@ -9,8 +9,9 @@ class ProductDetails extends Component {
     const { product } = this.props
     return (
       <Modal
-      visible={this.props.visible}
-      footer={null}
+        visible={this.props.visible}
+        onCancel={this.props.onCloseModal}
+        footer={null}
       >
         <div className={style.wrapper}>
           <img
@@ -23,6 +24,7 @@ class ProductDetails extends Component {
             <p className={style.price}>{formatPrice(product.price)}</p>
             <Button
             type="primary"
+            onClick={() => this.props.onAddToCart(product)}
             >
             Adicionar ao carrinho
             </Button>
