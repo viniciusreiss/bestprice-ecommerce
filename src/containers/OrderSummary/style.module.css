@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+.containerBg {
+  flex: 1;
+  padding: 24px;
+}
+
+.containerTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wrapperTrashIcon {
+  display: flex;
+  align-content: center;
+  cursor: pointer;
+}
+
+.textContainerTitle {
+  margin: 0px;
+  font-size: 12px;
+  margin-left: 8px;
+}
