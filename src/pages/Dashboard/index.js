@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addToCart } from '../../redux/actions/cart'
+import { message } from 'antd'
 import DashboardContainer from '../../containers/Dashboard'
 
 import products from '../../components/Product/product'
 
 class Dashboard extends Component {
 
-  handleOnAddToCart = (product) => {
-    this.props.onAddToCart(product)
+  handleOnAddToCart = (product, quantity) => {
+    const item = { ...product, quantity }
+    this.props.onAddToCart(item)
+    message.success('Produto adicionado ao carrinho!')
   }
 
   handleClickCart = () => {
