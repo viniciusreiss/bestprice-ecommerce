@@ -2,15 +2,6 @@ import React, { Component } from 'react'
 import Product from '../../components/Product'
 import { Icon } from 'antd'
 import style from './style.module.css'
-
-const Cart = (items, props) => {
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-      <Icon type="shopping-cart" style={{ fontSize: '28px' }} />
-        {items.items.cart.length}
-    </div>
-  )
-}
 export default class Dashboard extends Component {
   render () {
     const {
@@ -18,18 +9,21 @@ export default class Dashboard extends Component {
       closeModal,
       visible,
       onAddToCart,
-      items,
+      items
     } = this.props
+
+    const cartItems = items.cart.map(item => item.quantity)
+
     return (
       <div className={style.wrapper}>
         <header className={style.header}>
-        BestPrice
+          <h1 className={style.logo}>BestPrice</h1>
         <div
           style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
           onClick={this.props.onCartDetails}
         >
           <Icon type="shopping-cart" style={{ fontSize: '28px' }} />
-          {/* {items.items.cart.length} */} teste
+           {cartItems.reduce((acc, cur) => acc + cur, 0)}
         </div>
         </header>
         <section className={style.containerBg}>

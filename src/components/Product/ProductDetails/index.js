@@ -5,6 +5,10 @@ import style from './style.module.css'
 
 class ProductDetails extends Component {
 
+  state = {
+    quantity: 1
+  }
+
   render () {
     const { product } = this.props
     return (
@@ -24,9 +28,12 @@ class ProductDetails extends Component {
             <p className={style.price}>{formatPrice(product.price)}</p>
             <Button
             type="primary"
-            onClick={() => this.props.onAddToCart(product)}
+            onClick={() => this.props.onAddToCart(product, this.state.quantity)}
             >
             Adicionar ao carrinho
+            </Button>
+            <Button onClick={(event) => this.setState({ quantity: this.state.quantity + 1 })}>
+              {this.state.quantity}
             </Button>
             <p className={style.description}>{product.description}</p>
           </div>

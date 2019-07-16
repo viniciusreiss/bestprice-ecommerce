@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900i&display=swap');
+
 .wrapper {
   display: flex;
   flex: 1;
@@ -9,6 +11,14 @@
   width: 100%;
   min-height: 100px;
   background-color: #eee;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 40px;
+  font-weight: 900;
 }
 
 .containerBg {
@@ -24,4 +34,5 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 24;
+  margin-top: 50px;
 }
