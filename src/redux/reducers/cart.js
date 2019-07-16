@@ -7,6 +7,13 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
+      const itemAlreadyInCart = state.cart.find(item => item.productId === action.payload.productId)
+      if (itemAlreadyInCart) {
+        itemAlreadyInCart.quantity = itemAlreadyInCart.quantity + 1
+        return {
+          ...state,
+        }
+      }
       return {
         ...state,
         cart: [...state.cart, action.payload]
@@ -17,10 +24,17 @@ const reducer = (state = initialState, action) => {
         cart: []
       }
     case REMOVE_ITEM:
-      const cartItems = state.cart.filter(item => item.productId !== action.payload)
+     const newCart = []
+      state.cart.forEach(item => {
+        if (item.quantity >= 1 && item.productId === action.payload.id) {
+            item.quantity--
+        } if (item.quantity > 0) {
+            newCart.push(item)
+        }
+      })
       return {
         ...state,
-        cart: cartItems
+        cart: newCart
       }
     default:
       return state
