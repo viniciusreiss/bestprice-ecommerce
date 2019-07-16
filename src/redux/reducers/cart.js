@@ -17,10 +17,17 @@ const reducer = (state = initialState, action) => {
         cart: []
       }
     case REMOVE_ITEM:
-      const cartItems = state.cart.filter(item => item.productId !== action.payload)
+     const newCart = []
+      state.cart.forEach(item => {
+        if (item.quantity >= 1 && item.productId === action.payload.id) {
+            item.quantity--
+        } if (item.quantity > 0) {
+            newCart.push(item)
+        }
+      })
       return {
         ...state,
-        cart: cartItems
+        cart: newCart
       }
     default:
       return state
