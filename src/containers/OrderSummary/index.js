@@ -6,7 +6,8 @@ import style from './style.module.css'
 class OrderSummary extends Component {
   render () {
     const { items } = this.props
-
+    const sum = items.cart.map(item => item.price * item.quantity)
+    // const total = sum.reduce((acc, cur) => acc + cur)
     return (
      <div className={style.wrapper}>
        <div className={style.containerBg}>
@@ -20,29 +21,34 @@ class OrderSummary extends Component {
           <p className={style.textContainerTitle}>Limpar carrinho</p>
         </div>
        </div>
-       {items.cart.map(item => {
+       {items.cart.length >= 1 ? items.cart.map(item => {
          return (
-          <div key={item.productId} style={{ width: '100%', height: '100px', display: 'flex', alignItems: 'center' }}>
+          <div
+            key={item.productId}
+            className={style.containerProduct}>
             <div
-              style={{ height: '100px', width: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', flexDirection: 'column' }}
-              onClick={() => this.props.onRemoveItem(item.productId)}
+              className={style.wrapperTrashItem}
+              onClick={() => this.props.onRemoveItem({ id: item.productId, quantity: item.quantity})}
             >
               <Icon type="delete" />
-              <p style={{ margin: 0, fontSize: 8 }}>remover</p>
+              <p className={style.textWrapperTashItem}>remover</p>
             </div>
-            <img src={item.photo} style={{ width: 50, height: 50 }} alt={item.productName} />
-            <div style={{ marginLeft: 20, width: '100%', display: 'flex', justifyContent: 'space-between', alignContent: 'center' }}>
-              <p style={{ margin: 0 }}>{item.productName}</p>
-              <p>{formatPrice(item.price)}</p>
+            <img src={item.photo} className={style.photo} alt={item.productName} />
+            <div className={style.containerProductInfo}>
+              <div>
+                <p className={style.name}>{item.productName}</p>
+                <p className={style.name}>qtd: {item.quantity}</p>
+              </div>
+              <p>{formatPrice(item.price * item.quantity)}</p>
             </div>
           </div>
          )
-       })}
+       }) : <p> Você nāo possui nenhum produto no carrinho :( </p> }
        <hr />
-       <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+       <div className={style.containerPrice}>
          <p>Total</p>
-          {items.cart.length > 1 ? formatPrice(items.cart.reduce((acc, cur) => acc.price + cur.price))
-             : formatPrice(items.cart.map(item => item.price))}
+         {/* {items.cart.length > 1 ?
+          formatPrice(items.cart.reduce((acc, cur) => console.log(acc.price, cur.price ))) : formatPrice(items.cart.map(item => item.price))} */}
        </div>
        </div>
        <div style={{ backgroundColor: '#eee', flex: 1, padding: 24 }}>
