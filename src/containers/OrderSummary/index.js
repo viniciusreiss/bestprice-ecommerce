@@ -6,8 +6,9 @@ import style from './style.module.css'
 class OrderSummary extends Component {
   render () {
     const { items } = this.props
-    const sum = items.cart.map(item => item.price * item.quantity)
-    // const total = sum.reduce((acc, cur) => acc + cur)
+    const sumItems = items.cart.map(item => item.price * item.quantity)
+    const total = sumItems.reduce((acc, cur) => acc + cur, 0)
+
     return (
      <div className={style.wrapper}>
        <div className={style.containerBg}>
@@ -47,8 +48,7 @@ class OrderSummary extends Component {
        <hr />
        <div className={style.containerPrice}>
          <p>Total</p>
-         {/* {items.cart.length > 1 ?
-          formatPrice(items.cart.reduce((acc, cur) => console.log(acc.price, cur.price ))) : formatPrice(items.cart.map(item => item.price))} */}
+         {formatPrice(total)}
        </div>
        </div>
        <div style={{ backgroundColor: '#eee', flex: 1, padding: 24 }}>
