@@ -14,7 +14,6 @@ export const cleanCart = () => {
 }
 
 export const removeItem = product => {
-  console.log(product)
   return {
     type: REMOVE_ITEM,
     payload: product,

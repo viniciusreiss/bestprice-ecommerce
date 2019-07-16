@@ -7,6 +7,13 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
+      const itemAlreadyInCart = state.cart.find(item => item.productId === action.payload.productId)
+      if (itemAlreadyInCart) {
+        itemAlreadyInCart.quantity = itemAlreadyInCart.quantity + 1
+        return {
+          ...state,
+        }
+      }
       return {
         ...state,
         cart: [...state.cart, action.payload]
