@@ -16,7 +16,7 @@ class Product extends Component {
 
   render () {
     return (
-    <div>
+    <div className={style.container}>
       <div className={style.wrapper} onClick={this.showModal}>
         <div className={style.containerBg}>
           <img
