@@ -7,7 +7,6 @@
   padding: 24px;
   margin-top: 5px;
   margin-bottom: 5px;
-
 }
 
 .wrapper:hover{
@@ -35,4 +34,19 @@
 .name {
   font-size: 18px;
   font-family: Roboto;
+}
+
+@media only screen and (max-width: 600px){
+  .container {
+    width: 100%;
+  }
+
+  .wrapper {
+  border: 1px solid #eee;
+  border-radius: 3px;
+  width: 100%;
+  padding: 24px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  }
 }

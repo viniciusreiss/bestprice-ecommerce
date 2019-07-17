@@ -3,6 +3,7 @@ import { formatPrice } from '../../utils/formatters'
 import { Icon } from 'antd'
 import style from './style.module.css'
 
+import CheckoutContainer from '../Checkout'
 class OrderSummary extends Component {
   render () {
     const { items } = this.props
@@ -53,6 +54,10 @@ class OrderSummary extends Component {
        </div>
        <div style={{ backgroundColor: '#eee', flex: 1, padding: 24 }}>
          <h2>Pagamento</h2>
+         <CheckoutContainer
+          onSubmitBoleto={this.props.onSubmitBoleto}
+          loading={this.props.loading}
+         />
        </div>
      </div>
     )

@@ -10,13 +10,13 @@
 
 .containerTitle {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
 }
 
 .wrapperTrashIcon {
   display: flex;
-  align-content: center;
+  align-items: center;
   cursor: pointer;
 }
 
@@ -70,4 +70,23 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px){
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .containerTitle {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .containerPrice {
+  display: flex;
+  justify-content: space-between;
+ }
+
 }
