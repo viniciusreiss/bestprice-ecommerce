@@ -1,0 +1,74 @@
+.wrapper {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  flex-direction: column;
+  padding: 24px;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.header {
+  width: 100%;
+  min-height: 100px;
+  background-color: #eee;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.logo {
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.containerInfo{
+  display: flex;
+  justify-content: space-between;
+}
+
+.label{
+  font-size: 16;
+  font-weight: 600;
+}
+
+.containerBarcode{
+  display: flex;
+  justify-content: center;
+}
+
+.containerBg{
+  width: 70%;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  padding: 24px;
+}
+
+.containerSuccess {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.wrapperIcon {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.containerError{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+@media only screen and (max-width: 600px){
+
+  .containerBg{
+    width: 100%;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 24px;
+  }
+}
