@@ -1,8 +1,15 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## BestPrice - mini ecommerce
 
-In the project directory, you can run:
+BestPrice é a simulaçao de uma loja virtual, onde é possível realizar a compra de produtos e fazer o pagamento utilizando cartāo de crédito ou boleto a aplicaçāo está conectada a api da pagarme para simular os pagamentos.
+
+### Instalaçāo
+
+Faça o clone do repositório: [git@github.com:viniciusreiss/bestprice-ecommerce.git](git@github.com:viniciusreiss/bestprice-ecommerce.git)
+Acesse a pasta: cd bestprice-ecommerce
+Instale as depedências: yarn install ou npm install
+Rodando o projeto: yarn start ou npm start
+Abra: [http://localhost:3000](http://localhost:3000).
 
 ### `npm start`
 
