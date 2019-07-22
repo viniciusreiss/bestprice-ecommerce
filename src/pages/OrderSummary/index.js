@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { cleanCart, removeItem } from '../../redux/actions/cart'
-import OrderSummaryContainer from '../../containers/OrderSummary'
 import { generateBoleto } from '../../service/boleto'
+import { payment, generateCardHash } from '../../service/creditCard'
+import { sumItemsCart } from '../../utils/cart'
+import { message } from 'antd'
+import { API_KEY } from '../../utils/keys'
+import OrderSummaryContainer from '../../containers/OrderSummary'
 
 class OrderSummary extends Component {
   state = {
-    loading: false,
+    loadingBoleto: false,
+    loadingCreditCard: false,
   }
 
   handleOnCleanCart = () => {
@@ -20,33 +25,109 @@ class OrderSummary extends Component {
   handleSubmitBoleto = async (values) => {
     const { cart: { cart } } = this.props
 
-    this.setState({ loading: true }, async () => {
+    const amount = sumItemsCart(cart)
 
-    const sumItems = cart.map(item => item.price * item.quantity)
-    const amount = sumItems.reduce((acc, cur) => acc + cur, 0)
+    const body = {
+      amount,
+      api_key: API_KEY,
+      payment_method: 'boleto',
+      capture: 'true',
+      customer: {
+        type: 'individual',
+        country: 'br',
+        name: values.name,
+        documents: [{
+          type: 'cpf',
+          number: values.cpf
+        }]
+      }
+    }
+
+    this.setState({ loadingBoleto: true }, async () => {
+      try {
+        const response = await generateBoleto(body)
+
+        this.setState({ loadingBoleto: false })
+
+        this.props.history.push('/finish', { state: { response } })
+
+      } catch (err) {
+        this.setState({ loadingBoleto: false })
+
+        message.error('Erro ao gerar boleto!')
+      }
+    })
+  }
+
+  handleSubmitCreditCard = async (values) => {
+    const { cart: { cart } } = this.props
+
+    const { card_number, card_holder_name, card_expiration_date, card_cvv } = values
+
+    const card = { card_number, card_holder_name, card_expiration_date, card_cvv, }
+
+    const card_hash = await generateCardHash(card)
+
+    const amount = sumItemsCart(cart)
+
+    const items = cart.map((item) => {
+      return {
+        id: item.productId.toString().replace(/\.|-/g, ''),
+        title: item.productName,
+        unit_price: item.price.toString().replace(/\.|-/g, ''),
+        quantity: item.quantity,
+        tangible: true
+      }
+    })
+
+    const body = {
+    api_key: API_KEY,
+    amount,
+    card_hash,
+    installments: values.installments,
+    customer: {
+      external_id: "#3311",
+      name: values.name,
+      type: "individual",
+      country: "br",
+      email: "mopheus@nabucodonozor.com",
+      documents: [
+        {
+          type: "cpf",
+          number: values.cpf
+        }
+      ],
+      phone_numbers: ["+5511999998888", "+5511888889999"],
+      birthday: "1965-01-01"
+    },
+    billing: {
+      name: values.name,
+      address: {
+        country: "br",
+        state: values.state,
+        city: values.city,
+        neighborhood: values.neighborhood,
+        street: values.street,
+        street_number: values.number,
+        zipcode: values.zipCode
+      }
+    },
+    items: items
+    }
+
+    this.setState({ loadingCreditCard: true }, async () => {
 
       try {
-        const body = {
-          amount: amount * 100,
-          api_key: 'ak_test_c95d1oaP2zxURZiTM3nhELxdHFSSuo',
-          payment_method: 'boleto',
-          capture: 'true',
-          customer: {
-            type: 'individual',
-            country: 'br',
-            name: values.name,
-            documents: [{
-              type: 'cpf',
-              number: values.cpf
-            }]
-          }
-        }
-        const response = await generateBoleto(body)
-        this.setState({ loading: false })
+        const response = await payment(body)
+
         this.props.history.push('/finish', { state: { response } })
+
+        this.setState({ loadingCreditCard: false })
+
       } catch (err) {
-        console.log(err)
+        message.error('Transaçāo nāo autorizada!')
       }
+
     })
   }
 
@@ -57,7 +138,9 @@ class OrderSummary extends Component {
         onCleanCart={this.handleOnCleanCart}
         onRemoveItem={this.handleOnRemoveItem}
         onSubmitBoleto={this.handleSubmitBoleto}
-        loading={this.state.loading}
+        onSubmitCreditCard={this.handleSubmitCreditCard}
+        loadingBoleto={this.state.loadingBoleto}
+        loadingCreditCard={this.state.loadingCreditCard}
       />
     )
   }
