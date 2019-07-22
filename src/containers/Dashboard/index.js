@@ -19,7 +19,7 @@ export default class Dashboard extends Component {
         <header className={style.header}>
           <h1 className={style.logo}>BestPrice</h1>
         <div
-          style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+          className={style.wrapperCartIcon}
           onClick={this.props.onCartDetails}
         >
           <Icon type="shopping-cart" style={{ fontSize: '28px' }} />

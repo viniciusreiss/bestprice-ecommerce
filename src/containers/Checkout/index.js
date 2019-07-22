@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Tabs, Icon } from 'antd'
 import BoletoForm from './BoletoForm'
+import CreditCardForm from './CreditCardForm'
 
 const { TabPane } = Tabs
 
@@ -8,7 +9,7 @@ class Checkout extends Component {
   render () {
     return (
       <div>
-        <Tabs defaultActiveKey="2">
+        <Tabs defaultActiveKey="1">
           <TabPane
             tab={
               <span>
@@ -18,7 +19,10 @@ class Checkout extends Component {
             }
             key="1"
           >
-            Tab 1
+           <CreditCardForm
+            onSubmitCreditCard={this.props.onSubmitCreditCard}
+            loadingCreditCard={this.props.loadingCreditCard}
+          />
           </TabPane>
           <TabPane
             tab={
@@ -31,7 +35,7 @@ class Checkout extends Component {
           >
            <BoletoForm
             onSubmitBoleto={this.props.onSubmitBoleto}
-            loading={this.props.loading}
+            loadingBoleto={this.props.loadingBoleto}
            />
           </TabPane>
         </Tabs>

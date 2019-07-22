@@ -27,13 +27,10 @@ class ProductDetails extends Component {
             <p className={style.name} >{product.productName}</p>
             <p className={style.price}>{formatPrice(product.price)}</p>
             <Button
-            type="primary"
-            onClick={() => this.props.onAddToCart(product, this.state.quantity)}
+              type="default"
+              onClick={() => this.props.onAddToCart(product, this.state.quantity)}
             >
-            Adicionar ao carrinho
-            </Button>
-            <Button onClick={(event) => this.setState({ quantity: this.state.quantity + 1 })}>
-              {this.state.quantity}
+              Adicionar ao carrinho
             </Button>
             <p className={style.description}>{product.description}</p>
           </div>

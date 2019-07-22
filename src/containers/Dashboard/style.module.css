@@ -9,7 +9,6 @@
 
 .header {
   width: 100%;
-  min-height: 100px;
   background-color: #eee;
   padding: 24px;
   display: flex;
@@ -33,7 +32,13 @@
   max-width: 80%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   padding: 24;
   margin-top: 50px;
+  justify-content: center;
+}
+
+.wrapperCartIcon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }

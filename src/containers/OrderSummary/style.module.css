@@ -6,6 +6,8 @@
 .containerBg {
   flex: 1;
   padding: 24px;
+  height: 100vh;
+  overflow: auto;
 }
 
 .containerTitle {
@@ -70,6 +72,28 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.containerPayment {
+  background-color: #eee2;
+  flex: 1;
+  padding: 24px;
+  overflow: auto;
+}
+
+.header {
+  width: 100%;
+  min-height: 100px;
+  background-color: #eee;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.logo {
+  font-size: 40px;
+  font-weight: 900;
 }
 
 @media only screen and (max-width: 600px){

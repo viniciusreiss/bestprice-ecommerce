@@ -1,4 +1,3 @@
-
 const url = 'https://api.pagar.me/1/transactions'
 
 const generateBoleto = async (body) => {
