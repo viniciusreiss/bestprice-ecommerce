@@ -6,6 +6,8 @@ A aplicaçāo está conectada a api da pagarme para simular os pagamentos.
 
 Desenvolvido utilizando React e outras bibliotecas como Redux e AntDesign.
 
+A aplicaçāo também pode ser testada por aqui: https://distracted-thompson-7a4350.netlify.com/
+
 ### Instalaçāo
 
 1. Faça o clone do repositório: [git@github.com:viniciusreiss/bestprice-ecommerce.git](https://git@github.com:viniciusreiss/bestprice-ecommerce.git)
