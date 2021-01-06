@@ -7,7 +7,7 @@
     "@fnando/cpf": "^0.1.1",
     "@storybook/react": "^5.1.9",
     "antd": "^3.20.5",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "babel-loader": "8.0.5",
     "install": "^0.13.0",
     "moment": "^2.24.0",
